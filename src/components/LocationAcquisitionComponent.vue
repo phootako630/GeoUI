@@ -20,17 +20,20 @@ export default {
     const getGeoLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
-          console.log(position.coords.latitude);
-          console.log(position.coords.longitude);
-          emit("location-acquired", position.coords.latitude, position.coords.longitude);
+          const newLocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+            selected: false
+          };
+          emit("location-acquired", newLocation);
 
           // After getting the coordinates, get the address
           getAddressFrom(position.coords.latitude, position.coords.longitude);
-        })
+        });
       } else {
         console.log("Geolocation is not supported by this browser.");
       }
-    }
+    };
 
     const getAddressFrom = (latitude, longitude) => {
       const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${import.meta.env.VITE_APP_GOOGLE_API_KEY}`;

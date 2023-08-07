@@ -9,6 +9,7 @@ export async function fetchLocationCoordinates(locationName) {
       }
     });
 
+
     if (response.data.results && response.data.results.length > 0) {
       const locationData = response.data.results[0].geometry.location;
       return {

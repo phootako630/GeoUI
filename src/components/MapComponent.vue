@@ -1,57 +1,24 @@
 <template>
-  <div style="height: 500px; width: 100%;">
-    <GMap
-      :zoom="10"
-      :center="center"
-      :options="{fullscreenControl: false, streetViewControl: false}"
-      @google-map-ready="handleMapReady"
-    >
-      <GMapMarker
-        v-for="(location, index) in locations"
-        :key="index"
-        :position="location"
-        :options="{ draggable: false }"
-      />
-    </GMap>
-  </div>
+  <GoogleMap :api-key="apiKey" style="width: 100%; height: 500px" :center="center" :zoom="15">
+    <Marker v-for="(location, index) in locations" :key="index" :options="{ position: location }" />
+  </GoogleMap>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { defineComponent, ref, computed } from 'vue';
 import { GoogleMap, Marker } from 'vue3-google-map';
 
-export default {
-  components: {
-    GoogleMap,
-    Marker,
-  },
-  props: {
-    locations: {
-      type: Array,
-      default: () => [],
-    },
-  },
+export default defineComponent({
+  props: ['locations'],
+  components: { GoogleMap, Marker },
   setup(props) {
-    const center = ref({ lat: 0, lng: 0 });
-    const map = ref(null);
+    const apiKey = import.meta.env.VITE_APP_GOOGLE_API_KEY;
 
-    const handleMapReady = (mapInstance) => {
-      map.value = mapInstance;
-      if (props.locations.length > 0) {
-        center.value = props.locations[props.locations.length - 1];
-      }
-    };
-
-    onMounted(() => {
-      if (props.locations.length > 0) {
-        center.value = props.locations[props.locations.length - 1];
-      }
+    const center = computed(() => {
+      return props.locations.length > 0 ? props.locations[props.locations.length - 1] : { lat: 40.689247, lng: -74.044502 };
     });
 
-    return {
-      center,
-      handleMapReady
-    };
+    return { center, apiKey };
   },
-};
+});
 </script>
