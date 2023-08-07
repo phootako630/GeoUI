@@ -1,72 +1,45 @@
-# base
+# Vue GeoLocation Web App
+A Vue.js application that allows users to search for locations, view them on a map, and manage a list of these locations.
 
-## Project setup
+## Features
+* Get Current Location: Users can obtain their current geolocation with a single click.
+* Search Location: Allows users to search for any location, which then gets displayed on the map.
+* Manage Locations:
+  * Displays all searched locations in a table.
+  * Supports pagination with 10 records per page.
+  * Users can select multiple records and delete them.
+  * Integrated Map: Displays the searched location and plots it on the map.
+## Setup and Installation
+1. Clone the Repository:
 
+```bash
+Copy code
+git clone https://github.com/your-username/vue-geolocation-app.git
+cd GeoUI
 ```
-# yarn
-yarn
 
-# npm
+2. Install Dependencies:
+
+```bash
 npm install
-
-# pnpm
-pnpm install
 ```
+3. Set Up Environment Variables:
 
-### Compiles and hot-reloads for development
+ * Rename the .env.local.example to .env.local and update the values accordingly, especially the VITE_APP_GOOGLE_API_KEY with your Google Maps API key.
 
-```
-# yarn
-yarn dev
+4. Start the Development Server:
 
-# npm
+```bash
 npm run dev
-
-# pnpm
-pnpm dev
 ```
+This will start the development server, and the app should now be running on http://localhost:8080/.
 
-### Compiles and minifies for production
+## Technology Stack
+* Vue 3: Front-end framework.
+* Vuetify: For UI components.
+* Google Maps API: For fetching location coordinates and rendering maps.
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-```
-# yarn
-yarn build
-
-# npm
-npm run build
-
-# pnpm
-pnpm build
-```
-
-### Lints and fixes files
-
-```
-# yarn
-yarn lint
-
-# npm
-npm run lint
-
-# pnpm
-pnpm lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://vitejs.dev/config/).
-
-## Tasks
-Task: Create a web page with the following features:
-
-A button to allow users to acquire their current location from their browser.
-A search module that lets users input the name of a location. The search feature is triggered by both button clicks and pressing the enter key on the keyboard.
-Display the location on a map and add a marker to each searched location every time the location changes.
-A table with pagination to show all searched places:
-a)         Display a maximum of 10 records on each page.
-
-b)        A checkbox at the beginning of each row to let users select multiple records at the same time.
-
-c)         A delete button on the top to remove all selected records as well as their markers on the map.
-
-Display the time zone and local time of the latest searched location.
+## License
+MIT
