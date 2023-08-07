@@ -58,8 +58,15 @@ export default {
       const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${import.meta.env.VITE_APP_GOOGLE_API_KEY}`;
       axios.get(url)
         .then((response) => {
-          location.value = response.data.results[0].formatted_address;
-          console.log(response.data.results[0].formatted_address);
+          const formatted_address = response.data.results[0].formatted_address;
+          location.value = formatted_address;
+          const newLocation = {
+            lat: latitude,
+            lng: longitude,
+            name: formatted_address,
+            selected: false
+          };
+          emit("location-acquired", newLocation);
         })
         .catch((error) => {
           console.log(error);

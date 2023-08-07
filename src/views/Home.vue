@@ -21,6 +21,7 @@
       </v-col>
     </v-row>
 
+
     <!-- Geo Table Component -->
     <v-row justify="center">
       <v-col cols="12" md="10">
@@ -39,7 +40,7 @@ import LocationAcquisitionComponent from '../components/LocationAcquisitionCompo
 import LocationSearchComponent from '../components/LocationSearchComponent.vue';
 import MapComponent from '../components/MapComponent.vue';
 import GeoTableComponent from '../components/GeoTableComponent.vue';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { fetchLocationCoordinates } from "@/services/api";
 
 export default {
@@ -51,20 +52,24 @@ export default {
     GeoTableComponent
   },
   setup() {
+
     const location = ref(null);
     const locations = ref([]);
 
     const handleLocationAcquired = (newLocation) => {
       newLocation.selected = false;
       location.value = newLocation;
-      locations.value.push(newLocation)
+      locations.value = [...locations.value, newLocation];
     };
     // handle location searched by user
     const handleLocationSearched = async (locationName) => {
       const newLocation = await fetchLocationCoordinates(locationName);
+      //console.log("Fetched Location:", newLocation);
+      newLocation.name = locationName;
       newLocation.selected = false;
       location.value = newLocation;
-      locations.value.push(newLocation);
+      locations.value = [...locations.value, newLocation];
+      console.log("Locations array length after pushing:", locations.value.length);
     };
 
     const handleDeleteLocations = (newLocations) => {
