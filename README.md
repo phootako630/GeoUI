@@ -14,7 +14,7 @@ A Vue.js application that allows users to search for locations, view them on a m
 
 ```bash
 Copy code
-git clone https://github.com/your-username/vue-geolocation-app.git
+git clone https://github.com/your-username/GeoUI.git
 cd GeoUI
 ```
 
