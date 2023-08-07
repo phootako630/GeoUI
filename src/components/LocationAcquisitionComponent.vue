@@ -1,9 +1,28 @@
 <template>
-  <div>
-    <h1>You can hit the button for your Geo-location</h1>
-    <v-btn @click="getGeoLocation">Get Geo-location</v-btn>
-    <v-text-field label="Your Location" v-model="location" readonly />
-  </div>
+  <v-container>
+    <v-row justify="center">
+      <v-col cols="12" md="8" align="center">
+        <h1>You can hit the button for your Geo-location</h1>
+      </v-col>
+    </v-row>
+    <v-row justify="center">
+      <v-col cols="12" md="4" align="center">
+        <v-btn color="primary" dark large @click="getGeoLocation">
+          Get Geo-location
+        </v-btn>
+      </v-col>
+    </v-row>
+    <v-row justify="center">
+      <v-col cols="12" md="6">
+        <v-text-field
+          label="Your Location"
+          v-model="location"
+          readonly
+          outlined
+        />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

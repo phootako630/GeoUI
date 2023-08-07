@@ -1,12 +1,38 @@
 <template>
-  <div>
-    <location-acquisition-component @location-acquired="handleLocationAcquired" />
-    <location-search-component @search-location="handleLocationSearched" />
-    <map-component :locations="locations" />
-    <geo-table-component :locations="locations" @delete-locations="handleDeleteLocations" />
+  <v-container fluid>
+    <!-- Location Acquisition Component -->
+    <v-row justify="center" class="mb-4">
+      <v-col cols="12" md="10">
+        <location-acquisition-component @location-acquired="handleLocationAcquired" />
+      </v-col>
+    </v-row>
+
+    <!-- Location Search Component -->
+    <v-row justify="center" class="mb-4">
+      <v-col cols="12" md="10">
+        <location-search-component @search-location="handleLocationSearched" />
+      </v-col>
+    </v-row>
+
+    <!-- Map Component -->
+    <v-row justify="center" class="mb-4">
+      <v-col cols="12">
+        <map-component :locations="locations" />
+      </v-col>
+    </v-row>
+
+    <!-- Geo Table Component -->
+    <v-row justify="center">
+      <v-col cols="12" md="10">
+        <geo-table-component :locations="locations" @delete-locations="handleDeleteLocations" />
+      </v-col>
+    </v-row>
+
     <!-- Other components go here -->
-  </div>
+
+  </v-container>
 </template>
+
 
 <script>
 import LocationAcquisitionComponent from '../components/LocationAcquisitionComponent.vue';

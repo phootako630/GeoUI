@@ -1,11 +1,21 @@
 <template>
-<div>
-  <v-text-field
-    v-model='searchText'
-    label='Search Location'
-    @keyup.enter='searchLocation'/>
-  <v-btn @click="searchLocation">Search</v-btn>
-</div>
+  <v-container fluid>
+    <v-row justify="center">
+      <v-col cols="12" md="8">
+        <v-text-field
+          v-model="searchText"
+          label="Search Location"
+          append-icon="mdi-magnify"
+          filled
+          @keyup.enter="searchLocation"
+          @click:append="searchLocation"
+        ></v-text-field>
+      </v-col>
+      <v-col cols="12" md="6">
+        <v-btn color="primary" block @click="searchLocation">Search</v-btn>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
