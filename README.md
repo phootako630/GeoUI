@@ -38,6 +38,12 @@ This will start the development server, and the app should now be running on htt
 * Vue 3: Front-end framework.
 * Vuetify: For UI components.
 * Google Maps API: For fetching location coordinates and rendering maps.
+
+## Known Limitation
+1. Geolocation Permissions on First Visit: If you're accessing the application for the first time and attempt to retrieve your geolocation, the browser may not prompt you for location permissions like it typically does on the Chrome desktop browser. It's recommended to check your browser settings to ensure location services are enabled for this application.
+
+2. Lack of Autocomplete in Search: The search functionality does not utilize Google's autocomplete feature, as it's a premium service. To ensure the best results, please enter well-known locations when searching.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
