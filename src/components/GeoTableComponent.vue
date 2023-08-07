@@ -8,6 +8,8 @@
         <th>Name</th>
         <th>Latitude</th>
         <th>Longitude</th>
+        <th>Time Zone</th>
+        <th>Local Time</th>
       </tr>
       </thead>
       <tbody>
@@ -16,6 +18,8 @@
         <td>{{ location.name }}</td>
         <td>{{ location.lat }}</td>
         <td>{{ location.lng }}</td>
+        <td>{{ location.timeZone }}</td>
+        <td>{{ location.localTime }}</td>
       </tr>
       </tbody>
     </table>

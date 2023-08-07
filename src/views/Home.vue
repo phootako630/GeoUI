@@ -41,7 +41,7 @@ import LocationSearchComponent from '../components/LocationSearchComponent.vue';
 import MapComponent from '../components/MapComponent.vue';
 import GeoTableComponent from '../components/GeoTableComponent.vue';
 import { ref, watch } from 'vue';
-import { fetchLocationCoordinates } from "@/services/api";
+import { fetchLocationCoordinates, fetchTimeZoneAndLocalTime } from "@/services/api";
 
 export default {
   name: "Home",
@@ -56,21 +56,39 @@ export default {
     const location = ref(null);
     const locations = ref([]);
 
-    const handleLocationAcquired = (newLocation) => {
+    const timeZone = ref('');
+    const localTime = ref('');
+
+
+
+    const handleLocationAcquired = async (newLocation) => {
       newLocation.selected = false;
-      location.value = newLocation;
+
+      // Fetch time zone and local time
+      const { timeZoneId, localTime: time } = await fetchTimeZoneAndLocalTime(newLocation.lat, newLocation.lng);
+      newLocation.timeZone = timeZoneId;
+      newLocation.localTime = time;
+
       locations.value = [...locations.value, newLocation];
+      location.value = newLocation; // Setting the latest location
     };
-    // handle location searched by user
+
     const handleLocationSearched = async (locationName) => {
       const newLocation = await fetchLocationCoordinates(locationName);
-      //console.log("Fetched Location:", newLocation);
       newLocation.name = locationName;
       newLocation.selected = false;
-      location.value = newLocation;
+
+      // Fetch time zone and local time
+      const { timeZoneId, localTime: time } = await fetchTimeZoneAndLocalTime(newLocation.lat, newLocation.lng);
+      newLocation.timeZone = timeZoneId;
+      newLocation.localTime = time;
+
       locations.value = [...locations.value, newLocation];
+      location.value = newLocation; // Setting the latest location
+
       console.log("Locations array length after pushing:", locations.value.length);
     };
+
 
     const handleDeleteLocations = (newLocations) => {
       console.log('newLocations:', newLocations);

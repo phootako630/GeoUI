@@ -19,17 +19,30 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import {onMounted, ref} from 'vue';
 export default {
   name: "LocationSearchComponent",
   setup(props, { emit }) {
     const searchText = ref('');
+    //const autocompleteInput = ref(null);
+
     const searchLocation = () => {
       emit('search-location', searchText.value);
     }
+    /*onMounted(() => {
+      const autocomplete = new google.maps.places.Autocomplete(autocompleteInput.value.$el);
+
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        if (place.geometry) {
+          searchText.value = place.name;
+        }
+      });
+    });*/
     return {
       searchText,
-      searchLocation
+      searchLocation,
+      //autocompleteInput
     }
   }
 }

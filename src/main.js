@@ -11,9 +11,12 @@ import App from './App.vue'
 import { createApp } from 'vue'
 
 // Plugins
-import { registerPlugins } from '@/plugins'
+import { registerPlugins } from '@/plugins';
+
 
 const app = createApp(App)
+// Set the Google Maps API key as a global variable
+
 
 registerPlugins(app)
 
